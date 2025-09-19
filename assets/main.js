@@ -89,9 +89,9 @@
       const res = await fetch(endpoint, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
 
       if (res.ok) {
-        form.reset();
-        showToast('Danke! Deine Nachricht wurde gesendet.');
-        note.textContent = 'Gesendet – ich melde mich bald.';
+        // Erfolgreich: auf Bestätigungsseite weiterleiten
+        location.href = './success.html';
+        return;
       } else {
         const text = await res.text().catch(() => '');
         let short = '';

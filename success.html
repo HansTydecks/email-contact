@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nachricht gesendet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/main.css?v=1" />
+    <style>
+      .success {
+        display: grid; place-items: center; min-height: 60vh; text-align: center;
+      }
+      .check {
+        width: 84px; height: 84px; border-radius: 50%;
+        background: #062913; border: 2px solid #14532d; display: grid; place-items: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,.35);
+        margin: 1rem auto 1.2rem;
+      }
+      .check svg { width: 44px; height: 44px; color: #22c55e; }
+      .msg { color: var(--text); font-size: 1.05rem; }
+      .muted { color: var(--muted); margin-top: .25rem; }
+      .actions { justify-content: center; margin-top: 1rem; }
+      a.button { text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <main class="wrap success">
+      <section class="card">
+        <div class="check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h1>Nachricht gesendet</h1>
+        <p class="msg">Vielen Dank! Deine E‑Mail wurde erfolgreich versendet.</p>
+        <p class="muted">Ich melde mich so schnell wie möglich bei dir.</p>
+        <div class="actions">
+          <a class="button" href="./">Zurück zur Kontaktseite</a>
+        </div>
+      </section>
+    </main>
+  </body>
+  </html>
