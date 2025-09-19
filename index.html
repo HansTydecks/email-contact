@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kontakt | Feedback</title>
+    <meta name="description" content="Kontaktformular für Feedback und Anfragen." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/main.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <h1>Kontakt</h1>
+        <p class="subtitle">Schreib mir gerne Feedback zu meinen Webseiten.</p>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="card" id="contact">
+        <h2>Kontaktformular</h2>
+        <form id="contact-form" novalidate>
+          <!-- Honeypot gegen Bots -->
+          <div class="hp" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="grid">
+            <div class="field">
+              <label for="name">Name <span class="hint" style="font-weight:400">(optional)</span></label>
+              <input type="text" id="name" name="name" autocomplete="name" />
+              <p class="hint" id="name-hint">Du kannst deinen Namen angeben, musst aber nicht.</p>
+            </div>
+            <div class="field">
+              <label for="email">E‑Mail<span aria-hidden="true" class="req">*</span></label>
+              <input type="email" id="email" name="email" autocomplete="email" inputmode="email" required />
+              <p class="hint" id="email-hint">Bitte gib eine gültige E‑Mail ein.</p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="subject">Betreff</label>
+            <input type="text" id="subject" name="subject" maxlength="120" />
+          </div>
+
+          <div class="field">
+            <label for="message">Nachricht<span aria-hidden="true" class="req">*</span></label>
+            <textarea id="message" name="message" rows="8" required></textarea>
+            <p class="hint" id="message-hint">Bitte schreib eine kurze Nachricht.</p>
+          </div>
+
+          <div class="actions">
+            <button type="submit" id="submit-btn">Senden</button>
+            <p class="form-note" id="form-note" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      
+    </main>
+
+    <footer>
+        <div class="impressum">
+            <p>
+                Entwickelt für Lernende und Lehrende |
+                <a href="https://tinfo.space/teachers/Digitale_Tools/" target="_blank" rel="noopener">More apps and tools</a> |
+                <a href="#contact" id="contact-link">Kontakt</a> |
+                <a href="https://linktr.ee/tinfo.space" target="_blank" rel="noopener">Links</a> |
+                <a href="https://github.com/HansTydecks/binary-ascii-visualizer" target="_blank" rel="noopener">GitHub</a> |
+                © 2025 Hans Tydecks
+            </p>
+        </div>
+    </footer>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+
+    <script src="./assets/main.js" defer></script>
+  </body>
+  </html>

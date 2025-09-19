@@ -1,0 +1,85 @@
+/* Base dark theme */
+:root {
+  --bg: #0b0f14;
+  --panel: #121821;
+  --panel-2: #0f141c;
+  --text: #e6edf3;
+  --muted: #94a3b8;
+  --primary: #4f46e5; /* indigo-600 */
+  --primary-2: #6366f1;
+  --danger: #ef4444;
+  --ok: #22c55e;
+  --border: #1f2937;
+  --ring: rgba(99, 102, 241, 0.45);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0; font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(1200px 800px at 10% -10%, #111727 0%, #0b0f14 45%, #090d12 100%);
+  color: var(--text);
+}
+
+.wrap { width: min(900px, 92vw); margin: 0 auto; }
+
+.site-header { padding: 2.5rem 0 1rem; }
+.site-header h1 { margin: 0 0 .25rem; font-weight: 600; letter-spacing: 0.2px; }
+.site-header .subtitle { margin: 0; color: var(--muted); }
+
+.card {
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
+  border: 1px solid var(--border);
+  border-radius: 14px; padding: 1.25rem; margin: 1rem 0 1.25rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.03);
+}
+.card h2 { margin-top: 0; }
+
+.grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 700px) { .grid { grid-template-columns: 1fr 1fr; } }
+
+.field { display: grid; gap: .35rem; }
+label { color: var(--text); font-weight: 500; }
+.req { color: var(--muted); font-weight: 400; margin-left: .25rem; }
+
+input, textarea {
+  background: #0b1017; color: var(--text);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: .7rem .85rem; outline: none;
+}
+input:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--ring); }
+input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: var(--danger); }
+
+.hint { margin: 0; font-size: .85rem; color: var(--muted); }
+
+.actions { display: flex; align-items: center; gap: 1rem; margin-top: .5rem; flex-wrap: wrap; }
+.form-note { margin: 0; color: var(--muted); min-height: 1.25rem; }
+
+button {
+  appearance: none; border: none; border-radius: 10px; cursor: pointer;
+  background: linear-gradient(180deg, var(--primary-2), var(--primary)); color: white;
+  padding: .7rem 1rem; font-weight: 600; letter-spacing: .2px;
+  box-shadow: 0 8px 20px rgba(79,70,229,.4);
+}
+button:disabled { opacity: .6; cursor: not-allowed; box-shadow: none; }
+
+.linklike { background: none; color: var(--primary-2); padding: 0; box-shadow: none; text-decoration: underline; }
+
+.hp { position: absolute; left: -9999px; }
+
+.site-footer { color: var(--muted); padding: 2rem 0; text-align: center; }
+
+.obf { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+
+/* Toast */
+#toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  background: #111827; color: var(--text); border: 1px solid var(--border);
+  padding: .6rem .9rem; border-radius: 10px; min-width: 220px; text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,.45); opacity: 0; pointer-events: none; transition: opacity .2s ease;
+}
+#toast.show { opacity: 1; }
+
+.impressum { color: var(--muted); text-align: center; padding: 2rem 0 3rem; }
+.impressum a { color: var(--primary-2); }
+.impressum p { margin: .25rem 0; }
