@@ -1,6 +1,6 @@
 (function () {
-  // Preferred: set window.CONTACT_ENDPOINT in assets/config.js
-  const DEFAULT_ENDPOINT = (window.CONTACT_ENDPOINT || '').trim();
+  // Formspree-only flow: set window.CONTACT_ENDPOINT in assets/config.js
+  const ENDPOINT = (window.CONTACT_ENDPOINT || '').trim();
   const form = document.getElementById('contact-form');
   const submitBtn = document.getElementById('submit-btn');
   const note = document.getElementById('form-note');
@@ -80,28 +80,13 @@
       _origin: location.href,
     };
 
-  // Endpoint resolution:
-  // 1) DEFAULT_ENDPOINT (set above) if provided
-  // 2) URL hash param #cloud=https://...
-  // 3) Formspree fallback (replace FORM_ID)
-  const params = new URLSearchParams(location.hash.replace('#', ''));
-  const cloud = params.get('cloud');
-  const endpoint = DEFAULT_ENDPOINT || cloud || 'https://formspree.io/f/FORM_ID';
+  // Endpoint resolution: use configured Formspree endpoint
+  const endpoint = ENDPOINT || 'https://formspree.io/f/FORM_ID';
 
     try {
-      const isFormspree = /(^https?:\/\/)?([a-zA-Z0-9_.-]+\.)?formspree\.io\//.test(endpoint);
-      let res;
-      if (isFormspree) {
-        const fd = new FormData();
-        Object.entries(data).forEach(([k, v]) => fd.append(k, String(v || '')));
-        res = await fetch(endpoint, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
-      } else {
-        res = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(data),
-        });
-      }
+      const fd = new FormData();
+      Object.entries(data).forEach(([k, v]) => fd.append(k, String(v || '')));
+      const res = await fetch(endpoint, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
 
       if (res.ok) {
         form.reset();

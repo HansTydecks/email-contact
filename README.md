@@ -19,7 +19,7 @@ Ein simples Kontakt-/Feedback-Formular mit Dark-Theme, das statisch auf GitHub P
 2. In assets/main.js die Konstante endpoint anpassen und FORM_ID durch deine ID ersetzen.
 3. Optional: In assets/main.js im Abschnitt „reveal email“ user und domain auf deine Adresse setzen.
 
-Hinweis: Wenn du kein Formspree nutzen möchtest, können wir ein Mini-Backend (Node/Express, Python/Flask oder Cloud Function) ergänzen. GitHub Pages unterstützt selbst kein Server‑Side‑Code.
+Hinweis: GitHub Pages ist statisch; Formspree übernimmt den Versand. Eigene Backends sind in diesem Projekt absichtlich entfernt, um den Workflow maximal zu vereinfachen.
 
 ## Impressum
 Ersetze im Abschnitt „Impressum“ in index.html den Platzhaltertext durch dein echtes Impressum. Wenn du mir den Text schickst, trag ich ihn für dich ein.
