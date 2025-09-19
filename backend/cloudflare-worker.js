@@ -12,6 +12,9 @@ export default {
     if (request.method === 'OPTIONS') {
       return new Response(null, { status: 204, headers: cors() });
     }
+    if (request.method === 'GET') {
+      return new Response(JSON.stringify({ ok: true }), { status: 200, headers: { 'content-type': 'application/json', ...cors() } });
+    }
     if (request.method !== 'POST') {
       return new Response('Method Not Allowed', { status: 405, headers: cors() });
     }

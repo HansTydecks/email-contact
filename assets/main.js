@@ -1,7 +1,6 @@
 (function () {
-  // Set this to your Cloudflare Worker URL to send mails to feedback@tinfo.space
-  // Example: const DEFAULT_ENDPOINT = 'https://your-worker.workers.dev';
-  const DEFAULT_ENDPOINT = '';
+  // Preferred: set window.CONTACT_ENDPOINT in assets/config.js
+  const DEFAULT_ENDPOINT = (window.CONTACT_ENDPOINT || '').trim();
   const form = document.getElementById('contact-form');
   const submitBtn = document.getElementById('submit-btn');
   const note = document.getElementById('form-note');
@@ -101,10 +100,12 @@
         showToast('Danke! Deine Nachricht wurde gesendet.');
         note.textContent = 'Gesendet – ich melde mich bald.';
       } else {
-        const j = await res.json().catch(() => ({}));
-        console.error('Submit error', j);
-        note.textContent = 'Leider gab es ein Problem beim Senden. Bitte später noch einmal versuchen.';
-        showToast('Fehler beim Senden.');
+        const text = await res.text().catch(() => '');
+        let short = '';
+        try { const j = JSON.parse(text); short = j.error || ''; } catch {}
+        console.error('Submit error', res.status, text);
+        note.textContent = `Fehler beim Senden (HTTP ${res.status})${short ? ': ' + short : ''}`;
+        showToast('Fehler beim Senden');
       }
     } catch (err) {
       console.error(err);
