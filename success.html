@@ -6,23 +6,50 @@
     <title>Nachricht gesendet</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/main.css?v=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/main.css?v=2" />
     <style>
       .success {
-        display: grid; place-items: center; min-height: 60vh; text-align: center;
+        display: grid; place-items: center; min-height: 70vh; text-align: center;
       }
+      .success .card { max-width: 520px; padding: 2.5rem 2rem; }
       .check {
-        width: 84px; height: 84px; border-radius: 50%;
-        background: #062913; border: 2px solid #14532d; display: grid; place-items: center;
-        box-shadow: 0 10px 30px rgba(0,0,0,.35);
-        margin: 1rem auto 1.2rem;
+        width: 90px; height: 90px; border-radius: 50%;
+        background: rgba(34, 197, 94, 0.1);
+        border: 2px solid rgba(34, 197, 94, 0.3);
+        display: grid; place-items: center;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 0 30px rgba(34, 197, 94, 0.15);
+        margin: 0 auto 1.5rem;
       }
-      .check svg { width: 44px; height: 44px; color: #22c55e; }
-      .msg { color: var(--text); font-size: 1.05rem; }
-      .muted { color: var(--muted); margin-top: .25rem; }
-      .actions { justify-content: center; margin-top: 1rem; }
-      a.button { text-decoration: none; }
+      .check svg { width: 44px; height: 44px; color: #34d399; }
+      .success h1 {
+        font-size: 1.6rem; font-weight: 700; margin: 0 0 .5rem;
+        background: linear-gradient(135deg, #e0e7ff 0%, #a78bfa 100%);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .msg { color: var(--text); font-size: 1rem; margin: .5rem 0 .25rem; }
+      .muted { color: var(--muted); margin-top: .25rem; font-size: .9rem; }
+      .actions { justify-content: center; margin-top: 1.5rem; }
+      a.button {
+        display: inline-block;
+        text-decoration: none;
+        background: linear-gradient(135deg, var(--primary) 0%, #9333ea 100%);
+        color: white;
+        padding: .8rem 2rem;
+        border-radius: 12px;
+        font-family: var(--font);
+        font-weight: 600;
+        font-size: .95rem;
+        box-shadow: 0 8px 24px var(--primary-glow);
+        transition: transform .15s ease, box-shadow .2s ease;
+      }
+      a.button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 32px var(--primary-glow);
+      }
     </style>
   </head>
   <body>
@@ -33,13 +60,24 @@
             <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <h1>Nachricht gesendet</h1>
-        <p class="msg">Vielen Dank! Deine E‑Mail wurde erfolgreich versendet.</p>
-        <p class="muted">Ich melde mich so schnell wie möglich bei dir.</p>
+        <h1 data-i18n="successTitle">Nachricht gesendet</h1>
+        <p class="msg" data-i18n="successMsg">Vielen Dank! Deine E‑Mail wurde erfolgreich versendet.</p>
+        <p class="muted" data-i18n="successSub">Ich melde mich so schnell wie möglich bei dir.</p>
         <div class="actions">
-          <a class="button" href="./">Zurück zur Kontaktseite</a>
+          <a class="button" href="./" data-i18n="successBack">Zurück zur Kontaktseite</a>
         </div>
       </section>
     </main>
+
+    <script src="./assets/config.js?v=1"></script>
+    <script src="./assets/i18n.js?v=1"></script>
+    <script>
+      // Apply language from URL param
+      (function() {
+        const params = new URLSearchParams(location.search);
+        const lang = params.get('lang');
+        if (lang && window._setLang) window._setLang(lang);
+      })();
+    </script>
   </body>
   </html>
