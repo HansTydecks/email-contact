@@ -74,11 +74,31 @@ export async function send_mail({ name = '', email = '', subject = '', message =
     `Betreff: ${String(subject).trim() || '-'}\n\n` +
     `Nachricht:\n${String(message).trim()}\n`;
 
+  // 1) Nachricht an den Empfänger
   await transporter.sendMail({
     to,
     from: { name: cleanName ? `${cleanName} via Kontaktformular` : 'Kontaktformular', address: fromEmail },
     replyTo: { name: cleanName || email, address: email },
     subject: subj,
     text,
+  });
+
+  // 2) Bestätigungs-Email an den Absender (do-not-reply)
+  const confirmSubject = 'Bestätigung: Deine Nachricht wurde empfangen – tinfo.space';
+  const confirmText =
+    `Hallo${cleanName ? ' ' + cleanName : ''},\n\n` +
+    `vielen Dank für deine Nachricht über das Kontaktformular auf tinfo.space!\n` +
+    `Wir haben folgende Nachricht erhalten:\n\n` +
+    `Betreff: ${String(subject).trim() || '-'}\n` +
+    `Nachricht:\n${String(message).trim()}\n\n` +
+    `Wir werden uns so schnell wie möglich bei dir melden.\n\n` +
+    `Dies ist eine automatisch generierte E-Mail – bitte antworte nicht darauf.\n\n` +
+    `Viele Grüße,\ntinfo.space`;
+
+  await transporter.sendMail({
+    to: email,
+    from: { name: 'tinfo.space (Do Not Reply)', address: fromEmail },
+    subject: confirmSubject,
+    text: confirmText,
   });
 }
